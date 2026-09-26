@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AgriSarthi</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">🌱</div>
+
+            <h1>AgriSarthi</h1>
+
+            <p>Smart Farming Assistant</p>
+
+        </div>
+
+
+        <nav>
+
+            <div class="menu-item active" data-page="alertsPage">
+                <span>🔔</span>
+                <p>Alerts & Advisory</p>
+            </div>
+
+
+            <div class="menu-item" data-page="voicePage">
+                <span>🎙️</span>
+                <p>Ask AgriVoice</p>
+            </div>
+
+
+            <div class="menu-item" data-page="weatherPage">
+                <span>☀️</span>
+                <p>Weather Center</p>
+            </div>
+
+
+            <div class="menu-item" data-page="cropPage">
+                <span>🌾</span>
+                <p>Crop History</p>
+            </div>
+
+
+            <div class="menu-item" data-page="sensorPage">
+                <span>📊</span>
+                <p>Sensor Dashboard</p>
+            </div>
+
+
+            <div class="menu-item" data-page="settingsPage">
+                <span>⚙️</span>
+                <p>Settings</p>
+            </div>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="top-bar">
+
+            <div>
+
+                <p class="dashboard-label">
+                    DASHBOARD
+                </p>
+
+                <h2>AgriSarthi</h2>
+
+            </div>
+
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                AI Online
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================= ALERTS ================= -->
+
+        <section class="page active" id="alertsPage">
+
+            <h1>Alerts & Advisory</h1>
+
+            <p class="subtitle">
+                Important updates and recommendations for your farm
+            </p>
+
+
+            <div class="cards">
+
+
+                <div class="card warning">
+
+                    <div class="card-icon">
+                        ⚠️
+                    </div>
+
+                    <div>
+
+                        <h3>Pest Alert</h3>
+
+                        <p>
+                            Monitor your crops regularly for signs
+                            of pest activity.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        💧
+                    </div>
+
+                    <div>
+
+                        <h3>Irrigation Advisory</h3>
+
+                        <p>
+                            Check soil moisture before your next
+                            irrigation cycle.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        🌱
+                    </div>
+
+                    <div>
+
+                        <h3>Crop Advisory</h3>
+
+                        <p>
+                            Monitor crop growth and field conditions
+                            regularly.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= AGRIVOICE ================= -->
+
+        <section class="page" id="voicePage">
+
+            <h1>Ask AgriVoice</h1>
+
+            <p class="subtitle">
+                Speak about your crop or capture an image
+            </p>
+
+
+            <div class="action-buttons">
+
+
+                <!-- MICROPHONE -->
+
+                <div class="action-item">
+
+                    <button
+                        id="micButton"
+                        class="action-button">
+
+                        🎙️
+
+                    </button>
+
+                    <p id="micText">
+                        Tap to Speak
+                    </p>
+
+                </div>
+
+
+
+                <!-- CAMERA -->
+
+                <div class="action-item">
+
+                    <button
+                        id="cameraButton"
+                        class="action-button">
+
+                        📷
+
+                    </button>
+
+                    <p>
+                        Live Camera
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CAMERA -->
+
+            <div
+                id="cameraContainer"
+                class="camera-container">
+
+                <video
+                    id="camera"
+                    autoplay
+                    playsinline>
+                </video>
+
+
+                <div class="camera-controls">
+
+                    <button
+                        id="captureButton"
+                        class="capture-button">
+
+                        Capture
+
+                    </button>
+
+
+                    <button
+                        id="closeCamera"
+                        class="close-button">
+
+                        Close Camera
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <canvas id="canvas"></canvas>
+
+
+            <img
+                id="preview"
+                class="preview"
+                alt="Captured crop image">
+
+
+            <!-- LANGUAGE -->
+
+            <div class="language-box">
+
+                <label for="language">
+                    Select Language
+                </label>
+
+
+                <select id="language">
+
+                    <option value="en-IN">
+                        English
+                    </option>
+
+                    <option value="hi-IN">
+                        हिंदी
+                    </option>
+
+                    <option value="mr-IN">
+                        मराठी
+                    </option>
+
+                    <option value="gu-IN">
+                        ગુજરાતી
+                    </option>
+
+                    <option value="ta-IN">
+                        தமிழ்
+                    </option>
+
+                    <option value="te-IN">
+                        తెలుగు
+                    </option>
+
+                    <option value="kn-IN">
+                        ಕನ್ನಡ
+                    </option>
+
+                    <option value="bn-IN">
+                        বাংলা
+                    </option>
+
+                </select>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= WEATHER ================= -->
+
+        <section class="page" id="weatherPage">
+
+            <h1>Weather Center</h1>
+
+            <p class="subtitle">
+                Current weather information for your farm
+            </p>
+
+
+            <div class="weather-card">
+
+                <div class="weather-main">
+
+                    <span class="weather-icon">
+                        ☀️
+                    </span>
+
+                    <div>
+
+                        <h2>28°C</h2>
+
+                        <p>Partly Cloudy</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="weather-details">
+
+                    <div>
+                        <b>Humidity</b>
+                        <span>68%</span>
+                    </div>
+
+                    <div>
+                        <b>Rainfall</b>
+                        <span>20%</span>
+                    </div>
+
+                    <div>
+                        <b>Wind</b>
+                        <span>12 km/h</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <h3 class="section-title">
+                3-Day Forecast
+            </h3>
+
+
+            <div class="forecast">
+
+                <div>
+                    <b>Today</b>
+                    <span>☀️</span>
+                    <p>28°C</p>
+                </div>
+
+                <div>
+                    <b>Tomorrow</b>
+                    <span>🌤️</span>
+                    <p>27°C</p>
+                </div>
+
+                <div>
+                    <b>Day 3</b>
+                    <span>🌧️</span>
+                    <p>25°C</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= CROP HISTORY ================= -->
+
+        <section class="page" id="cropPage">
+
+            <h1>Crop History</h1>
+
+            <p class="subtitle">
+                Previous crops and farming records
+            </p>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Crop</th>
+
+                        <th>Season</th>
+
+                        <th>Sowing Date</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>🌾 Rice</td>
+
+                        <td>Monsoon</td>
+
+                        <td>June 2026</td>
+
+                        <td>Harvested</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>🌱 Soybean</td>
+
+                        <td>Monsoon</td>
+
+                        <td>July 2026</td>
+
+                        <td>Growing</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>🌽 Maize</td>
+
+                        <td>Winter</td>
+
+                        <td>November 2025</td>
+
+                        <td>Harvested</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+
+        <!-- ================= SENSOR ================= -->
+
+        <section class="page" id="sensorPage">
+
+            <h1>Sensor Dashboard</h1>
+
+            <p class="subtitle">
+                Monitor important farm conditions
+            </p>
+
+
+            <div class="sensor-grid">
+
+
+                <div class="sensor-card">
+
+                    <span>💧</span>
+
+                    <h3>Soil Moisture</h3>
+
+                    <strong>64%</strong>
+
+                    <p>Good</p>
+
+                </div>
+
+
+                <div class="sensor-card">
+
+                    <span>🌡️</span>
+
+                    <h3>Temperature</h3>
+
+                    <strong>27°C</strong>
+
+                    <p>Normal</p>
+
+                </div>
+
+
+                <div class="sensor-card">
+
+                    <span>🧪</span>
+
+                    <h3>Soil pH</h3>
+
+                    <strong>6.8</strong>
+
+                    <p>Healthy</p>
+
+                </div>
+
+
+                <div class="sensor-card">
+
+                    <span>💨</span>
+
+                    <h3>Air Humidity</h3>
+
+                    <strong>68%</strong>
+
+                    <p>Normal</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= SETTINGS ================= -->
+
+        <section class="page" id="settingsPage">
+
+            <h1>Settings</h1>
+
+            <p class="subtitle">
+                Manage your AgriSarthi preferences
+            </p>
+
+
+            <div class="settings">
+
+
+                <div class="setting">
+
+                    <div>
+
+                        <h3>Language</h3>
+
+                        <p>
+                            Choose your preferred language
+                        </p>
+
+                    </div>
+
+
+                    <select>
+
+                        <option>English</option>
+
+                        <option>हिंदी</option>
+
+                        <option>मराठी</option>
+
+                        <option>ગુજરાતી</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="setting">
+
+                    <div>
+
+                        <h3>Notifications</h3>
+
+                        <p>
+                            Receive farming alerts
+                        </p>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            checked>
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="setting">
+
+                    <div>
+
+                        <h3>AI Assistance</h3>
+
+                        <p>
+                            Enable AgriVoice assistance
+                        </p>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            checked>
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= RESPONSE ================= -->
+
+        <div class="response-box">
+
+            <strong>AgriVoice:</strong>
+
+            <span id="response">
+                Your AI farming assistant is ready.
+            </span>
+
+        </div>
+
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
